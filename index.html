@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of a creative developer passionate about games, finance, and web technologies." />
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Minimal Inline CSS to show structure (optional - move to style.css) */
+    html{
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #222;
+    }
+    header, section, footer {
+      display:block; 
+      padding:4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .hero{
+    min-height:85vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:4rem 2rem;
+
+    background:
+    linear-gradient(
+        135deg,
+        #f8fafc,
+        #eef6ff
+    );
+}
+
+.hero-content{
+    max-width:700px;
+}
+
+.greeting{
+    color:#2563eb;
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+.hero h1{
+    font-size:clamp(3rem,8vw,5rem);
+    margin:.2rem 0;
+}
+
+.hero h2{
+    color:#475569;
+    font-size:1.6rem;
+    margin-bottom:1.5rem;
+}
+
+.hero-text{
+    color:#64748b;
+    font-size:1.1rem;
+    margin-bottom:2rem;
+}
+    .hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:.9rem 1.8rem;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.25s;
+}
+
+.primary{
+    background:#2563eb;
+    color:white;
+}
+
+.primary:hover{
+    background:#1d4ed8;
+}
+
+.secondary{
+    border:2px solid #2563eb;
+    color:#2563eb;
+}
+
+.secondary:hover{
+    background:#2563eb;
+    color:white;
+}
+    .about-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem; /* Adds space between image and text */
+  flex-wrap: wrap; /* Ensures it stacks on mobile devices */
+}
+
+.profile-photo {
+  width: 200px;    /* Adjust size as needed */
+  height: 200px;   /* Keep same as width for a perfect circle */
+  object-fit: cover;
+  border-radius: 50%; /* Makes the image circular */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #007acc;
+    }
+      .projects{
+    padding:6rem 2rem;
+}
+
+.section-header{
+    text-align:center;
+    max-width:700px;
+    margin:auto;
+    margin-bottom:4rem;
+}
+
+.section-tag{
+    color:var(--primary);
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+    .project-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(340px,1fr));
+
+    gap:2rem;
+    }
+    .project-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+
+    transition:.35s;
+    }
+    .project-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,.12);
+
+    }
+    .project-card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    }
+    .project-content{
+
+    padding:1.5rem;
+
+}
+
+.project-content h3{
+
+    margin-top:0;
+
+}
+
+.project-content p{
+
+    color:#64748b;
+
+}
+    .tech-stack{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:.6rem;
+
+    margin:1.2rem 0;
+
+}
+
+.tech-stack span{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    padding:.45rem .9rem;
+
+    border-radius:999px;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+}
+    .project-links{
+
+    display:flex;
+
+    gap:1rem;
+
+}
+
+.project-links a{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#2563eb;
+
+    padding:.7rem 1rem;
+
+    border-radius:8px;
+
+    transition:.25s;
+
+}
+
+.project-links a:hover{
+
+    background:#1d4ed8;
+
+}
+    .page.active{
+
+    opacity:1;
+
+    transform:none;
+
+    position:relative;
+
+    }
+    nav a.active{
+
+    color:white;
+
+    background:#2563eb;
+
+    border-radius:8px;
+
+    padding:.6rem 1rem;
+
+    }
+    .about{
+    padding:6rem 2rem;
+}
+
+.about-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:2rem;
+}
+
+.about-card{
+    background:var(--card-bg);
+    border:1px solid #e2e8f0;
+    border-radius:16px;
+    padding:2rem;
+    transition:.3s ease;
+}
+
+.about-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.about-card h3{
+    margin-top:0;
+    color:var(--primary);
+}
+
+.skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.6rem;
+    margin-top:1rem;
+}
+
+.skill-tags span{
+    background:#eff6ff;
+    color:var(--primary);
+    padding:.45rem .9rem;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+}
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    #contactForm{
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+.form-group{
+
+    margin-bottom:1.5rem;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:.5rem;
+
+    font-weight:600;
+
+}
+
+.form-group input,
+.form-group textarea{
+
+    width:100%;
+
+    padding:1rem;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:10px;
+
+    font-size:1rem;
+
+    box-sizing:border-box;
+
+    transition:.3s;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+.error{
+
+    color:#dc2626;
+
+    font-size:.85rem;
+
+    display:block;
+
+    margin-top:.35rem;
+
+}
+
+.invalid{
+
+    border-color:#dc2626 !important;
+
+}
+
+.valid{
+
+    border-color:#16a34a !important;
+
+}
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Navigation -->
+  <header>
+<section class="page active" id="home">
+    <div class="hero-content">
+        <p class="greeting">👋 Hello, I'm</p>
+
+        <h1>Fatimah Hamzah</h1>
+
+        <h2>Creative Developer & Problem Solver</h2>
+        <img src = "WAHEEDAH ENLARGED PPT.jpg" alt = "A photo of me" class = "profile-photo">
+
+        <p class="hero-text">
+            I build interactive web applications, educational platforms,
+            data dashboards, and modern user experiences using HTML, CSS,
+            JavaScript, Python, and Firebase.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#projects" class="btn primary">
+                View Projects
+            </a>
+
+            <a href="#contact" class="btn secondary">
+                Contact Me
+            </a>
+        </div>
+    </div>
+</section>
+    <nav>
+      <ul>
+        <li><a href="planner.html">Academic Planner</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#blogs">Blog</a></li>
+        <li><a href="#about-me">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Projects Section -->
+<section id="projects" class="page">
+
+    <div class="section-header">
+        <p class="section-tag">Portfolio</p>
+        <h2>Featured Projects</h2>
+        <p>
+            A selection of projects focused on web development,
+            interactive experiences, education, and data visualization.
+        </p>
+    </div>
+
+    <div class="project-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+
+            <img
+                src="1784407337713.png"
+                alt="Student Spending Dashboard">
+
+            <div class="project-content">
+
+                <h3>Student Spending Dashboard</h3>
+
+                <p>
+                    Interactive financial dashboard for visualizing
+                    student spending habits with dynamic charts.
+                </p>
+
+                <div class="tech-stack">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>Chart.js</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://student-spending-dashboard-fatimah.netlify.app/">Live Demo</a>
+                    <a href="#">GitHub</a>
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- Project 2 -->
+
+        <article class="project-card">
+
+            <img
+                src="1784407636117.png"
+                alt="Student investmentweb app">
+
+            <div class="project-content">
+
+                <h3>Invest today</h3>
+
+                <p>
+                  A simple website that shows live crypto price (uses API). It also includes a mini test.
+                  Users can interact with it to find an investment suitable for them plus estimated return 
+                  on investment.
+                </p>
+
+                <div class="tech-stack">
+                    <span>JavaScript</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://investor-for-students-fatimah.netlify.app/">Live Demo</a>
+                    <a href="#">GitHub</a>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+  <!-- Project 3 -->
+    <article class="project-card">
+
+            <img
+                src="Screenshot_20260718-215102_Chrome.jpg"
+                alt="Vibe Poet">
+
+            <div class="project-content">
+
+                <h3>Vibe Poet</h3>
+
+                <p>
+                    A lightweight website that generates themed poems. It is designed for poem lovers,
+                  night thinkers and anyone seeking calm. Tap to find your vibe.
+                </p>
+
+                <div class="tech-stack">
+                    <span>JavaScript</span>
+                    <span>HTML</span>
+                    <span>CSS</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://5uig3n3ris.github.io/VibePoet2.0/">Live Demo</a>
+                    <a href="#">GitHub</a>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+  <div>
+    <a href="nefelibata21.carrd.co" class="btn primary">More projects</a>
+  </div>
+
+
+</section>
+  <!-- Blog Section -->
+  <section id="blogs" class="page">
+    <h2>Blog</h2>
+    <article class="blog-post">
+      <h3>How I Built My First Web App</h3>
+      <p><small>Posted on May 10, 2025</small></p>
+      <p>A quick overview of the tools and steps I used to build my first full-stack application...</p>
+      <a href="https://dev.to/5uig3n3ris"
+        class="btn primary">
+        Read More
+      </a>
+    </article>
+    <!-- Add more blog posts here -->
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about-me" class="about-me">
+    <h2>About Me</h2>
+    <div class = "about-container">
+      <img src = "WAHEEDAH ENLARGED PPT.jpg" alt = "A photo of me" class = "profile-photo">
+    </div>
+
+    <p>
+      I'm a developer focused on building clean, responsive, and meaningful digital experiences. My projects often revolve around interactive learning tools, finance dashboards, and web-based games. I'm continuously exploring new tech — from Firebase to React, from data viz to command-line tools.
+    </p>
+    <section id="about-me" class="about">
+
+    <div class="section-header">
+        <p class="section-tag">About</p>
+        <h2>About Me</h2>
+        <p>
+            I'm passionate about building software that solves real-world
+            problems and creates meaningful digital experiences.
+        </p>
+    </div>
+
+    <div class="about-grid">
+
+        <article class="about-card">
+            <h3>🎓 Educational Background</h3>
+            <p>
+                High school: 2013-2019
+                I got several tech certifications in the interim which sowed the passion for tech in me
+             .  BSc Computer Science: 2025-Present
+            </p>
+        </article>
+
+        <article class="about-card">
+            <h3>🚀 Career Aspirations</h3>
+            <p>
+                I would love to contribute meaningfully to the advancement of technologyin my local community. 
+              Another thing I'm passionate about is ethical AI
+            </p>
+        </article>
+
+        <article class="about-card">
+            <h3>💻 Technical Skills</h3>
+
+            <div class="skill-tags">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>Python</span>
+                <span>Firebase</span>
+                <span>Git</span>
+                <span>Responsive Design</span>
+                <span>Chart.js</span>
+            </div>
+        </article>
+
+        <article class="about-card">
+            <h3>🎯 Hobbies & Interests</h3>
+            <p>
+                Coding, learning new technologies, reading,
+                personal finance, educational technology,
+                gaming, and building creative web applications.
+            </p>
+        </article>
+
+    </div>
+  </section>
+<section id="contact" class="page">
+
+    <div class="section-header">
+        <p class="section-tag">Get In Touch</p>
+        <h2>Contact Me</h2>
+        <p>
+            Have a project, opportunity, or question? I'd love to hear from you.
+        </p>
+    </div>
+
+    <form id="contactForm" novalidate>
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="Your full name">
+            <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="you@example.com">
+            <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+                type="tel"
+                id="phone"
+                placeholder="08012345678">
+            <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+                id="message"
+                rows="6"
+                placeholder="Write your message..."></textarea>
+            <small class="error"></small>
+        </div>
+
+        <button type="submit" class="btn primary">
+            Send Message
+        </button>
+
+    </form>
+
+</section>
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Feel free to reach out — I’m always up for a meaningful collaboration or a tech chat.</p>
+    <p>Email: <a href="mailto:f.hamzah7386@miva.edu.ng">Email</a></p>
+    <p>LinkedIn: <a href="#" target="_blank">my LinkedIn</a></p>
+    <p>GitHub: <a href="#" target="_blank">my GitHub</a></p>
+  </section>
+
+  <div style="text-align:center;">
+    <a href="#home" class ="btn primary">Home</a>
+  </div>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Fatimah Hamzah. All rights reserved.</p>
+  </footer>
+<script>
+  links.forEach(a=>{
+    a.classList.remove("active");
+});
+
+link.classList.add("active");
+  history.pushState(
+    null,
+    "",
+    "#" + target
+);
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const message = document.getElementById("message");
+
+    let isValid = true;
+
+    clearErrors();
+
+    // Name
+    if(name.value.trim() === ""){
+        showError(name,"Name is required");
+        isValid = false;
+    }
+
+    // Email
+    const emailRegex =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(email.value.trim() === ""){
+
+        showError(email,"Email is required");
+        isValid = false;
+
+    }else if(!emailRegex.test(email.value)){
+
+        showError(email,"Enter a valid email");
+        isValid = false;
+
+    }
+
+    // Phone
+
+    const phoneRegex = /^[0-9]+$/;
+
+    if(phone.value.trim() === ""){
+
+        showError(phone,"Phone number is required");
+        isValid = false;
+
+    }else if(!phoneRegex.test(phone.value)){
+
+        showError(
+            phone,
+            "Phone number must contain only digits"
+        );
+
+        isValid = false;
+
+    }
+
+    // Message
+
+    if(message.value.trim() === ""){
+
+        showError(
+            message,
+            "Message cannot be empty"
+        );
+
+        isValid = false;
+
+    }
+
+    if(isValid){
+
+        alert("Message sent successfully!");
+
+        form.reset();
+
+    }
+
+});
+
+function showError(input,message){
+
+    input.classList.add("invalid");
+
+    input.nextElementSibling.textContent = message;
+
+}
+
+function clearErrors(){
+
+    document
+        .querySelectorAll(".error")
+        .forEach(error=>error.textContent="");
+
+    document
+        .querySelectorAll("input,textarea")
+        .forEach(input=>{
+
+            input.classList.remove("invalid");
+            input.classList.remove("valid");
+
+        });
+
+  }
+document
+.querySelectorAll("input, textarea")
+.forEach(field => {
+
+    field.addEventListener("input", () => {
+
+        field.classList.remove("invalid");
+        field.nextElementSibling.textContent = "";
+
+    });
+
+});
+
+
+</script>
+</body>
+</html>
