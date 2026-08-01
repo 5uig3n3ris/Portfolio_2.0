@@ -4,23 +4,227 @@
     <meta charset="UTF-8">
     <title>Academic Planner</title>
     <style>
-        .planner { max-width: 350px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 12px; font-family: sans-serif; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .done { text-decoration: line-through; color: #888; }
-        ul { padding: 0; }
-        li { display: flex; justify-content: space-between; align-items: center; padding: 8px; border-bottom: 1px solid #eee; }
-        span { cursor: pointer; flex-grow: 1; }
-        button { cursor: pointer; margin-left: 10px; }
-    </style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.planner {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+input {
+    width: calc(100% - 80px);
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    font-size: 15px;
+}
+
+button {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+/* Add Button */
+.planner > button {
+    background: #22c55e;
+    color: white;
+}
+
+.planner > button:hover {
+    background: #16a34a;
+}
+
+ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.9);
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    transition: 0.25s;
+}
+
+li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+span {
+    flex: 1;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+.done {
+    text-decoration: line-through;
+    color: #999;
+    opacity: 0.7;
+}
+
+/* Delete Button */
+li button {
+    background: #ef4444;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+li button:hover {
+    background: #dc2626;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.4);
+    border-radius: 10px;
+}
+        .input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group input {
+    flex: 1;
+}
+        .input-group,
+.toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-group input,
+.toolbar input {
+    flex: 1;
+}
+
+.toolbar input {
+    background: rgba(255,255,255,0.95);
+}
+
+.clear-btn {
+    background: #f59e0b;
+    color: white;
+}
+
+.clear-btn:hover {
+    background: #d97706;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#taskCount {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+
+#taskList {
+    max-height: 350px;
+    overflow-y: auto;
+}
+.subtitle {
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+</style>
 </head>
 <body>
+    <div class="planner">
+<h2>
+    📚 Academic Planner
+</h2>
+<p class="subtitle">
+    Organize your assignments and stay productive.
+</p>
 
-<div class="planner">
-    <h2>Academic Planner</h2>
-    <input type="text" id="taskInput" placeholder="Add a new task...">
-    <input type="text" id="search" placeholder="Search tasks...">
-    <button onclick="addTask()">Add</button>
-    <button onclick="clearTasks()">Clear All</button>
-    <p id="taskCount">0 tasks</p>
+    <div class="input-group">
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Add a new task..."
+        >
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <div class="toolbar">
+        <input
+            type="text"
+            id="search"
+            placeholder="🔍 Search tasks..."
+        >
+        <button class="clear-btn" onclick="clearTasks()">
+            Clear All
+        </button>
+    </div>
+
+    <div class="stats">
+        <span id="taskCount">0 Tasks</span>
+    </div>
+
     <ul id="taskList"></ul>
 </div>
 
