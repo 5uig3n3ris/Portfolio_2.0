@@ -17,7 +17,10 @@
 <div class="planner">
     <h2>Academic Planner</h2>
     <input type="text" id="taskInput" placeholder="Add a new task...">
+    <input type="text" id="search" placeholder="Search tasks...">
     <button onclick="addTask()">Add</button>
+    <button onclick="clearTasks()">Clear All</button>
+    <p id="taskCount">0 tasks</p>
     <ul id="taskList"></ul>
 </div>
 
@@ -71,6 +74,54 @@
         const tasks = JSON.parse(localStorage.getItem("academicTasks") || "[]");
         tasks.forEach(createTaskElement);
     }
+    document.getElementById("taskInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        addTask();
+    }
+});
+    function addTask() {
+    const input = document.getElementById("taskInput");
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    const exists = [...document.querySelectorAll("#taskList span")]
+        .some(span => span.textContent.toLowerCase() === text.toLowerCase());
+
+    if (exists) {
+        alert("Task already exists!");
+        return;
+    }
+
+    createTaskElement({ text, done: false });
+    saveTasks();
+    input.value = "";
+    }
+    function clearTasks() {
+    if (confirm("Delete all tasks?")) {
+        document.getElementById("taskList").innerHTML = "";
+        localStorage.removeItem("academicTasks");
+    }
+    }
+    function updateCount() {
+    const total = document.querySelectorAll("#taskList li").length;
+    document.getElementById("taskCount").textContent =
+        `${total} task${total !== 1 ? "s" : ""}`;
+    }
+    document.getElementById("search").addEventListener("input", function() {
+    const value = this.value.toLowerCase();
+
+    document.querySelectorAll("#taskList li").forEach(li => {
+        const text = li.querySelector("span").textContent.toLowerCase();
+        li.style.display = text.includes(value) ? "" : "none";
+    });
+});
+    const task = {
+    text: input.value,
+    done: false,
+    dueDate: "2026-08-05",
+    priority: "High"
+};
 </script>
 
 </body>
